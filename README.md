@@ -1,2 +1,2 @@
 # project_vue3_exercise
-vue3练习
+vue3，vite练习
