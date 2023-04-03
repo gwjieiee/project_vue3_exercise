@@ -16,13 +16,15 @@ import headerUser from './headerUser.vue';
 .header-top {
   width: 100%;
   height: 60px;
-  background: lightskyblue;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid #eee;
 }
 .flex{
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  padding: 0 10px;
 }
 </style>

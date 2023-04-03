@@ -14,7 +14,6 @@ export default defineConfig({
   server: {
     port: 8808,
     host: '0.0.0.0',
-    open: true,
     proxy: {
       // 代理配置
       '/api': {

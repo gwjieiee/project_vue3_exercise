@@ -1,9 +1,9 @@
 <template>
   <el-container style="height: 100vh;">
-    <el-aside>
+    <el-aside :style="{ width: isExpand ? '65px' : '250px' }">
       <layoutLeft/>
     </el-aside>
-    <el-container class="main">
+    <el-container class="main" :style="{ width : isExpand ? 'calc(100vw - 65px)' : 'calc(100vw - 250px)'}">
       <el-header>
         <headerVue></headerVue>
       </el-header>
@@ -18,11 +18,16 @@
 <script setup>
 import layoutLeft from './components/layoutLeft/layoutLeft.vue';
 import headerVue from './components/header/index.vue';
+import { globalStore } from '@/store';
+import { ref,computed } from 'vue';
+
+const global = globalStore()
+
+const isExpand = computed(()=> global.isexpand)
+
 </script>
 <style scoped>
 .el-aside{
-  width: 250px;
-  background: gray;
   overflow-y: auto;
 }
 .main{

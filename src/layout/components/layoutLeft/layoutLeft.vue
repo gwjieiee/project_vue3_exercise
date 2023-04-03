@@ -1,5 +1,5 @@
 <template>
-  <div class="breadcrumb">
+  <div>
     <menuList></menuList>
   </div>
 </template>
@@ -7,8 +7,5 @@
 import menuList from '../menu/menuList.vue';
 </script>
 <style scoped>
-.breadcrumb {
-  background: purple;
-  padding: 10px;
-}
+
 </style>
