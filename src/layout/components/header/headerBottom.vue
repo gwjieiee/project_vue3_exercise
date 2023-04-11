@@ -9,7 +9,6 @@ import headerTab from './headerTab.vue';
 <style scoped>
 .header-bottom {
   width: 100%;
-  height: 35px;
-  background: lightgoldenrodyellow;
+  height: 40px;
 }
 </style>

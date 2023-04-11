@@ -14,12 +14,15 @@ export const globalStore = defineStore({
     changeExpand() {
       this.isexpand = !this.isexpand
     },
+    setExpand(val){
+      this.isexpand = val
+    },
     setToken(val) {
       this.token = val
     },
     logout(){
       this.token = ''
-    }
+    },
   },
   persist: {
     enabled: true,

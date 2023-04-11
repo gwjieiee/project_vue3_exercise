@@ -39,6 +39,7 @@ const menuList = ref([
     children: [
       {
         path: '/home',
+        name:'home',
         meta: {
           title: '首页',
           icon: ''
@@ -56,12 +57,14 @@ const menuList = ref([
     children: [
       {
         path: '/systemManage/user',
+        name:'user',
         meta: {
           title: '用户管理',
         },
       },
       {
         path: '/systemManage/role',
+        name:'role',
         meta: {
           title: '角色管理',
         },

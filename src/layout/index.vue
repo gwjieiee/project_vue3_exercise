@@ -8,9 +8,7 @@
         <headerVue></headerVue>
       </el-header>
       <el-main>
-        <!-- <el-scroll> -->
-          <router-view></router-view>
-        <!-- </el-scroll> -->
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -18,12 +16,28 @@
 <script setup>
 import layoutLeft from './components/layoutLeft/layoutLeft.vue';
 import headerVue from './components/header/index.vue';
+import { useDebounceFn } from "@vueuse/core";
 import { globalStore } from '@/store';
-import { ref,computed } from 'vue';
+import { ref,computed, onBeforeUnmount } from 'vue';
 
 const global = globalStore()
 
 const isExpand = computed(()=> global.isexpand)
+
+//监听页面大小，折叠侧边栏
+const screenWidth = ref(0)
+
+const listeningWindow = useDebounceFn(() => {
+  screenWidth.value = document.body.clientWidth
+  if (screenWidth.value < 900) global.setExpand(true)
+  if (screenWidth.value > 900) global.setExpand(false)
+}, 100);
+
+window.addEventListener("resize", listeningWindow, false)
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", listeningWindow)
+});
 
 </script>
 <style scoped>

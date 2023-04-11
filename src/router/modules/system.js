@@ -12,6 +12,7 @@ const routes = [
     children:[
       {
         path:'home',
+        name:'home',
         component:()=> import ('@/views/home/index.vue'),
         meta:{
           title:'首页',
@@ -37,6 +38,7 @@ const routes = [
     children:[
       {
         path:'role',
+        name:'role',
         component:()=> import ('@/views/systemManage/role/index.vue'),
         meta:{
           title:'角色管理'
@@ -44,6 +46,7 @@ const routes = [
       },
       {
         path:'user',
+        name:'user',
         component:()=> import ('@/views/systemManage/user/index.vue'),
         meta:{
           title:'用户管理'

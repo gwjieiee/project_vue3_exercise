@@ -1,24 +1,41 @@
 <template>
   <div class="operation">
-    <overall-reduction v-if="isFullscreen" theme="outline" size="22" fill="#555" @click="toggle"/>
-    <full-screen v-else theme="outline" size="22" fill="#555" @click="toggle"/>
+    <div class="notice pointer">
+      <el-popover :width="300" trigger="click">
+        <template #reference>
+          <remind theme="outline" size="20" fill="#555" />
+        </template>
+        <template #default>
+        1111222
+        </template>
+      </el-popover>
+    </div>
+    <div class="full-screen">
+      <overall-reduction class="pointer" v-if="isFullscreen" theme="outline" size="20" fill="#555" @click="toggle" />
+      <full-screen class="pointer" v-else theme="outline" size="20" fill="#555" @click="toggle" />
+    </div>
   </div>
 </template>
 <script setup>
 import { useFullscreen } from '@vueuse/core'
-import { OverallReduction,FullScreen } from '@icon-park/vue-next'
+import { OverallReduction, FullScreen, Remind } from '@icon-park/vue-next'
 
 const { toggle, isFullscreen } = useFullscreen()
 
 
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .operation {
   display: flex;
   align-items: center;
-  margin-right: 20px;
-  span{
+  margin-right: 15px;
+
+  span {
     display: flex;
+  }
+
+  .full-screen {
+    margin-left: 15px;
   }
 }
 </style>

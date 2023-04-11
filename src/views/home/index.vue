@@ -1,21 +1,14 @@
 <template>
-  <h3>home</h3>
-  <h3>home</h3>
-  <h3>home</h3>
-  <h3>home</h3>
-  <el-button @click="login_btn">前往登录</el-button>
+  <h4>qrcode.vue</h4>
+  <Qrcode :value="content" :size="size"></Qrcode><br/>
 </template>
 <script setup>
-import { onMounted } from 'vue'
-import { globalStore } from '@/store'
+import { onMounted,ref } from 'vue'
+import Qrcode from 'qrcode.vue'
 
-const global = globalStore()
+const content = ref('http://actorlixian.com')
 
-const login_btn = () => {
-  // router.push('/login')
-  global.logout()
-  location.reload()
-}
+const size = ref(100)
 
 onMounted(() => {
   //

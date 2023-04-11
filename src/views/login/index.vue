@@ -39,11 +39,11 @@ const loginForm = reactive({
 const loginRules = reactive({
   account: [
     { required: true, trigger: 'blur', message: '请输入账号' },
-    { min: 4, max: 10, trigger: 'blur', message: '账号的字符长度在4-10之间' }
+    { min: 4, max: 10, trigger: 'blur', message: '账号的字符长度应在4-10之间' }
   ],
   password: [
     { required: true, trigger: 'blur', message: '请输入密码' },
-    { min: 6, max: 10, trigger: 'blur', message: '密码的字符长度在4-10之间' }
+    { min: 6, max: 16, trigger: 'blur', message: '密码的字符长度应在6-16之间' }
   ]
 })
 
