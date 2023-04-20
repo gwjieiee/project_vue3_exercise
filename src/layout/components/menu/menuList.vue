@@ -26,6 +26,7 @@ const router = useRouter()
 
 const handleSelect = (val)=>{
   router.push(val)
+  console.log(val)
 }
 
 const menuList = ref([
