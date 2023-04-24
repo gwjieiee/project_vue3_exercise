@@ -48,6 +48,7 @@ export const globalStore = defineStore({
   },
   persist: {
     enabled: true,
+    // storage:window.sessionStorage,
   },
 })
 

@@ -6,7 +6,7 @@
           <remind theme="outline" size="20" fill="#555" />
         </template>
         <template #default>
-        1111222
+          <headerNoticeVue/>
         </template>
       </el-popover>
     </div>
@@ -19,6 +19,8 @@
 <script setup>
 import { useFullscreen } from '@vueuse/core'
 import { OverallReduction, FullScreen, Remind } from '@icon-park/vue-next'
+
+import headerNoticeVue from './headerNotice.vue';
 
 const { toggle, isFullscreen } = useFullscreen()
 

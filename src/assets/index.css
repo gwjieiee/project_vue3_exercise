@@ -1,13 +1,25 @@
-.center{
-  text-align:center;
+.center {
+  text-align: center;
 }
-.w-100{
+.w-100 {
   width: 100%;
 }
-.h-40{
+.h-40 {
   height: 40px;
   line-height: 40px;
 }
-.pointer{
+.pointer {
   cursor: pointer;
+}
+.flex {
+  display: flex;
+}
+.p-l-20 {
+  padding-left: 20px;
+}
+.m-t-10 {
+  margin-top: 10px;
+}
+.m-t-20 {
+  margin-top: 20px;
 }
