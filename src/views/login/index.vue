@@ -7,14 +7,14 @@
       <div class="login-right">
         <el-form class="login-form" ref="loginFormRef" :model="loginForm" :rules="loginRules">
           <el-form-item>
-            <h2 class="center w-100">运营平台</h2>
+            <h2 class="center w-100">gwjieiee_practise</h2>
           </el-form-item>
           <el-form-item prop="account">
-            <el-input class="h-40" :prefix-icon="User" v-model="loginForm.account" placeholder="请输入账号"></el-input>
+            <el-input class="h-40" :prefix-icon="User" v-model="loginForm.account" placeholder="admin/user"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input type="password" class="h-40" :prefix-icon="Lock" v-model="loginForm.password"
-              placeholder="请输入密码" @keyup.enter.native="login_btn"></el-input>
+            <el-input type="password" class="h-40" :prefix-icon="Lock" v-model="loginForm.password" placeholder="任意6-16字符"
+              @keyup.enter.native="login_btn"></el-input>
           </el-form-item>
           <el-form-item>
             <div class="login-button" @click="login_btn">登录</div>
@@ -25,11 +25,11 @@
   </div>
 </template>
 <script setup>
-import { reactive,ref } from 'vue';
-import {useRoute,useRouter} from 'vue-router'
-import {ElMessage} from 'element-plus'
+import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
-import {globalStore} from '@/store/index'
+import { globalStore } from '@/store/index'
 
 const loginForm = reactive({
   account: '',
@@ -54,14 +54,19 @@ const global = globalStore()
 const router = useRouter()
 
 const login_btn = () => {
-  loginFormRef.value.validate((valid)=>{
-    if(valid){
-      global.setToken('gwjieiee')
-      ElMessage.success('登录成功！')
-      setTimeout(()=>{
-        router.push('/')
-      },1000)
-    }else{
+  loginFormRef.value.validate((valid) => {
+    if (valid) {
+      if (loginForm.account == 'admin' || loginForm.account == 'user') {
+        global.addAccount(loginForm.account)
+        global.setToken('gwjieiee')
+        ElMessage.success('登录成功！')
+        setTimeout(() => {
+          router.push('/')
+        }, 1000)
+      } else {
+        ElMessage.error('请输入正确的账号！')
+      }
+    } else {
       console.error('err')
     }
   })

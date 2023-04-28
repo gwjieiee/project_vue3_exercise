@@ -2,11 +2,14 @@ import { defineStore, createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import router from '../router/index'
 
+import systemManage from '@/router/modules/system'
+
 export const globalStore = defineStore({
   id: 'globalStore',
   state: () => {
     return {
       isexpand: true,
+      account: '',
       token: '',
       tabList: [],
     }
@@ -18,6 +21,17 @@ export const globalStore = defineStore({
     },
     setExpand(val) {
       this.isexpand = val
+    },
+    addAccount(val) {
+      this.account = val
+      if (val === 'admin') {
+        this.addRoutes()
+      }
+    },
+    addRoutes() {
+      systemManage.forEach((item) => {
+        router.addRoute(item)
+      })
     },
     setToken(val) {
       this.token = val

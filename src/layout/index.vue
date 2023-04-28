@@ -1,9 +1,9 @@
 <template>
   <el-container style="height: 100vh;">
-    <el-aside :style="{ width: isExpand ? '65px' : '250px' }">
-      <layoutLeft/>
+    <el-aside :style="{ width: isExpand ? '65px' : '220px' }">
+      <layoutLeft />
     </el-aside>
-    <el-container class="main" :style="{ width : isExpand ? 'calc(100vw - 65px)' : 'calc(100vw - 250px)'}">
+    <el-container class="main" :style="{ width: isExpand ? 'calc(100vw - 65px)' : 'calc(100vw - 220px)' }">
       <el-header>
         <headerVue></headerVue>
       </el-header>
@@ -18,11 +18,11 @@ import layoutLeft from './components/layoutLeft/layoutLeft.vue';
 import headerVue from './components/header/index.vue';
 import { useDebounceFn } from "@vueuse/core";
 import { globalStore } from '@/store';
-import { ref,computed, onBeforeUnmount } from 'vue';
+import { ref, computed, onBeforeUnmount } from 'vue';
 
 const global = globalStore()
 
-const isExpand = computed(()=> global.isexpand)
+const isExpand = computed(() => global.isexpand)
 
 //监听页面大小，折叠侧边栏
 const screenWidth = ref(0)
@@ -41,20 +41,22 @@ onBeforeUnmount(() => {
 
 </script>
 <style scoped>
-.el-aside{
+.el-aside {
   overflow-y: auto;
 }
-.main{
-  width: calc(100vw - 250px);
+
+.main {
+  width: calc(100vw - 220px);
   flex-direction: column;
 }
 
-.el-header{
+.el-header {
   width: 100%;
   height: auto;
   padding: 0;
 }
-.el-main{
+
+.el-main {
   width: 100%;
   height: 100%;
   overflow-y: auto;

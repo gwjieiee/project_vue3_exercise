@@ -1,16 +1,16 @@
 <template>
   <el-scrollbar>
-    <el-menu :default-active="activeMenu" :collapse="isCollapse" text-color="#555"
-      active-text-color="rgb(76, 161, 100)" :collapse-transition="false" @select="handleSelect">
+    <el-menu :default-active="activeMenu" :collapse="isCollapse" text-color="#555" active-text-color="rgb(76, 161, 100)"
+      :collapse-transition="false" @select="handleSelect">
       <menuItem :menuList="menuList">
       </menuItem>
     </el-menu>
   </el-scrollbar>
 </template>
 <script setup>
-import { ref, computed } from 'vue'
-import { useRoute,useRouter } from 'vue-router';
-import { globalStore } from '@/store';
+import { ref, computed, inject, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { globalStore } from '@/store'
 
 import menuItem from './menuItem.vue';
 
@@ -20,13 +20,18 @@ const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu
 
 const global = globalStore()
 
-const isCollapse = computed(()=> global.isexpand)
+const isCollapse = computed(() => global.isexpand)
 
-const router = useRouter()
+const Router = useRouter()
 
-const handleSelect = (val)=>{
-  router.push(val)
-  console.log(val)
+const reload = inject('reload')
+
+const handleSelect = (val) => {
+  if (route.path !== val) {
+    Router.push(val)
+  } else {
+    reload()
+  }
 }
 
 const menuList = ref([
@@ -36,11 +41,11 @@ const menuList = ref([
       title: '首页',
       icon: 'HomeFilled'
     },
-    component:'layout',
+    component: 'layout',
     children: [
       {
         path: '/home',
-        name:'home',
+        name: 'home',
         meta: {
           title: '首页',
           icon: ''
@@ -58,14 +63,14 @@ const menuList = ref([
     children: [
       {
         path: '/systemManage/user',
-        name:'user',
+        name: 'user',
         meta: {
           title: '用户管理',
         },
       },
       {
         path: '/systemManage/role',
-        name:'role',
+        name: 'role',
         meta: {
           title: '角色管理',
         },
@@ -76,11 +81,12 @@ const menuList = ref([
 
 </script>
 <style>
-.el-menu{
+.el-menu {
   border: none;
 }
-.el-sub-menu__title:hover{
-  background: rgba(76, 161, 100,.1);
+
+.el-sub-menu__title:hover {
+  background: rgba(76, 161, 100, .1);
   color: #4ca164 !important;
 }
 </style>

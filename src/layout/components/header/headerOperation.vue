@@ -6,23 +6,34 @@
           <remind theme="outline" size="20" fill="#555" />
         </template>
         <template #default>
-          <headerNoticeVue/>
+          <headerNoticeVue />
         </template>
       </el-popover>
     </div>
-    <div class="full-screen">
-      <overall-reduction class="pointer" v-if="isFullscreen" theme="outline" size="20" fill="#555" @click="toggle" />
-      <full-screen class="pointer" v-else theme="outline" size="20" fill="#555" @click="toggle" />
+    <div class="full-screen pointer">
+      <overall-reduction v-if="isFullscreen" theme="outline" size="20" fill="#555" @click="toggle" />
+      <full-screen v-else theme="outline" size="20" fill="#555" @click="toggle" />
     </div>
+    <!-- <div class="refresh-button pointer" @click="refresh_btn">
+      <refresh theme="outline" size="20" fill="#555" />
+    </div> -->
   </div>
 </template>
 <script setup>
 import { useFullscreen } from '@vueuse/core'
-import { OverallReduction, FullScreen, Remind } from '@icon-park/vue-next'
+import { OverallReduction, FullScreen, Remind, Refresh } from '@icon-park/vue-next'
+import { inject } from 'vue';
 
 import headerNoticeVue from './headerNotice.vue';
 
 const { toggle, isFullscreen } = useFullscreen()
+
+const reload = inject('reload')
+
+const refresh_btn = () => {
+  reload()
+  // location.reload()
+}
 
 
 </script>
@@ -30,14 +41,17 @@ const { toggle, isFullscreen } = useFullscreen()
 .operation {
   display: flex;
   align-items: center;
-  margin-right: 15px;
 
   span {
     display: flex;
   }
 
   .full-screen {
-    margin-left: 15px;
+    margin: 0 15px;
+  }
+
+  .refresh-button {
+    margin-right: 15px;
   }
 }
 </style>

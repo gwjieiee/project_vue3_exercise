@@ -2,13 +2,15 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import nProgress from 'nprogress'
 import { globalStore } from '../store'
 
+import defaultRoutes from './modules/default'
+
 import systemManage from './modules/system'
 
-nProgress.configure({showSpinner:false})//隐藏右上角螺旋加载显示
+nProgress.configure({ showSpinner: false }) //隐藏右上角螺旋加载显示
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...systemManage],
+  routes: [...defaultRoutes],
 })
 
 router.beforeEach((to, from, next) => {
