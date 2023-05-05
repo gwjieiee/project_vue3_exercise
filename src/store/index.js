@@ -1,6 +1,9 @@
 import { defineStore, createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import router from '../router/index'
+import { handleMenu } from '../utils/handleMenu'
+
+import menuList from './menuList'
 
 import systemManage from '@/router/modules/system'
 
@@ -12,6 +15,7 @@ export const globalStore = defineStore({
       account: '',
       token: '',
       tabList: [],
+      MenuList: [],
     }
   },
   getters: {},
@@ -25,13 +29,18 @@ export const globalStore = defineStore({
     addAccount(val) {
       this.account = val
       if (val === 'admin') {
-        this.addRoutes()
+        this.addRoutes(menuList.menuList1)
+      } else {
+        this.addRoutes(menuList.menuList2)
       }
     },
-    addRoutes() {
-      systemManage.forEach((item) => {
+    addRoutes(list) {
+      let routers = handleMenu(list)
+      routers.forEach((item) => {
         router.addRoute(item)
       })
+      this.MenuList = routers
+      console.log('router', routers)
     },
     setToken(val) {
       this.token = val

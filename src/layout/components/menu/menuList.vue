@@ -34,7 +34,7 @@ const handleSelect = (val) => {
   }
 }
 
-const menuList = ref([
+const initMenu = ref([
   {
     path: '/',
     meta: {
@@ -52,32 +52,10 @@ const menuList = ref([
         }
       }
     ]
-  },
-  {
-    path: '/systemManage',
-    meta: {
-      title: '系统管理',
-      icon: 'Tools',
-    },
-    component: 'layout',
-    children: [
-      {
-        path: '/systemManage/user',
-        name: 'user',
-        meta: {
-          title: '用户管理',
-        },
-      },
-      {
-        path: '/systemManage/role',
-        name: 'role',
-        meta: {
-          title: '角色管理',
-        },
-      },
-    ],
-  },
+  }
 ])
+
+const menuList = computed(() => initMenu.value.concat(global.MenuList))
 
 </script>
 <style>

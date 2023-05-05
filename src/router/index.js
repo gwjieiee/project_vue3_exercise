@@ -4,8 +4,6 @@ import { globalStore } from '../store'
 
 import defaultRoutes from './modules/default'
 
-import systemManage from './modules/system'
-
 nProgress.configure({ showSpinner: false }) //隐藏右上角螺旋加载显示
 
 const router = createRouter({
